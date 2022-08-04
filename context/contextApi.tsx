@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { JsonPlaceApi } from "../core/class/apis/gitApi";
+import { JsonPlaceApi } from "../core/class/apis/jsonPlaceApi";
 import { JsonTodoResponseType } from "../core/types/jsonPlaceApiResponseTypes";
 import { JsonPlaceUserTypes } from "../core/types/jsonPlaceUserTypes";
 
