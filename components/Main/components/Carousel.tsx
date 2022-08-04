@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
 import {
   AiFillCaretLeft,
@@ -18,6 +19,7 @@ type PropsCarousel = {
 }
 
 const Carousel = ({ state }: PropsCarousel) => {
+  const router = useRouter()
   const [limit, setLimit] = useState<number>(0)
   const [[page, direction], setPage] = useState([0, 0])
   const { width } = UseWidth()
@@ -53,7 +55,12 @@ const Carousel = ({ state }: PropsCarousel) => {
               transition={{ type: 'spring', stiffness: 100, duration: 2 }}
               key={i}
               variants={carouselVariants}
-              onClick={() => { }}
+              onClick={() => {
+                router.push({
+                  pathname: '/Todos/[user]',
+                  query: { user: name, id: id }
+                })
+              }}
             >
               <div className="relative flex h-[250px] w-[250px] flex-col items-center justify-evenly gap-y-5 rounded-3xl p-2 text-center">
                 <div className="absolute  h-full w-full  rounded-3xl bg-[#4E7AC7]/10 backdrop-blur-sm" />
