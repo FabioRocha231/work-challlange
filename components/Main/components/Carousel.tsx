@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useMemo, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import {
   AiFillCaretLeft,
   AiFillCaretRight,
@@ -7,6 +8,7 @@ import {
   AiOutlineMail
 } from 'react-icons/ai'
 import { FaUserAlt } from 'react-icons/fa'
+import { UserContext } from '../../../context/contextApi'
 import { CarouselGestures } from '../../../core/class/handlers/CarouselGestures'
 import { JsonPlaceUserTypes } from '../../../core/types/jsonPlaceUserTypes'
 import { UseWidth } from '../../../hooks/UseWidth'
@@ -18,6 +20,8 @@ type PropsCarousel = {
 }
 
 const Carousel = ({ state }: PropsCarousel) => {
+  const router = useRouter()
+  const { getTodosByUserId } = useContext(UserContext)
   const [limit, setLimit] = useState<number>(0)
   const [[page, direction], setPage] = useState([0, 0])
   const { width } = UseWidth()
@@ -53,7 +57,12 @@ const Carousel = ({ state }: PropsCarousel) => {
               transition={{ type: 'spring', stiffness: 100, duration: 2 }}
               key={i}
               variants={carouselVariants}
-              onClick={() => { }}
+              onClick={() => {
+                router.push({
+                  pathname: '/Todos/[user]',
+                  query: { user: name, id: id }
+                })
+              }}
             >
               <div className="relative flex h-[250px] w-[250px] flex-col items-center justify-evenly gap-y-5 rounded-3xl p-2 text-center">
                 <div className="absolute  h-full w-full  rounded-3xl bg-[#4E7AC7]/10 backdrop-blur-sm" />
