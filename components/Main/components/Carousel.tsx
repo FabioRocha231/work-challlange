@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   AiFillCaretLeft,
   AiFillCaretRight,
@@ -8,7 +8,6 @@ import {
   AiOutlineMail
 } from 'react-icons/ai'
 import { FaUserAlt } from 'react-icons/fa'
-import { UserContext } from '../../../context/contextApi'
 import { CarouselGestures } from '../../../core/class/handlers/CarouselGestures'
 import { JsonPlaceUserTypes } from '../../../core/types/jsonPlaceUserTypes'
 import { UseWidth } from '../../../hooks/UseWidth'
@@ -21,7 +20,6 @@ type PropsCarousel = {
 
 const Carousel = ({ state }: PropsCarousel) => {
   const router = useRouter()
-  const { getTodosByUserId } = useContext(UserContext)
   const [limit, setLimit] = useState<number>(0)
   const [[page, direction], setPage] = useState([0, 0])
   const { width } = UseWidth()
